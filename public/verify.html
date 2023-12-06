@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZChat Verification</title>
+<style>
+    body {
+        background-color: #222;
+        color: white;
+        font-size: 'large';
+    }
+    h1 {
+        text-align: center;
+        color: lime;
+        border-bottom: 2px solid red;
+        padding: 0.3rem;
+    }
+    button{
+        background-color: navy;
+        padding: 1rem;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+          border: none;
+          color: white;
+    }
+    button:hover {
+        opacity: 0.8;
+    }
+    
+    .grid {
+        display: grid;
+        place-items: center;
+    }
+</style>
+</head>
+
+<body>
+<h1>ZChat Verification</h1>
+    <div class='grid'>
+        <h2>Please follow this link to verify your account.</h2>
+        <button class='verifyButton' onClick='handleVerify()'>Verify</button>
+</div>
+  <script>
+    const handleVerify = async () => {
+        let button = document.querySelector('.verifyButton');
+        button.innerHTML = "Please Wait...";
+        const res = await fetch('http://localhost:3000/verify/${id}');
+        const message = await res.json();
+        button.innerHTML = message.message;
+        button.disabled = true;
+    }
+  </script>
+</body>
+
+</html>
